@@ -1,18 +1,13 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
-
 import { Channel } from './Channel';
-
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column({ unique: true })
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
+  @Column({ nullable: false})
   email: string;
-
-  @Column()
+  @Column({ nullable: false})
   firstName: string;
-
   @OneToOne(() => Channel, (channel) => channel.user)
   channel: Channel;
 }
